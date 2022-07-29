@@ -8,50 +8,35 @@ namespace TelefonRehberi
     class RehberKontroller
     {
          
-        public List<string> nameLastName = new List<string>();
-        public List<string> numbers = new List<string>();
+     
         public static List<Contacts> Kisiler = new List<Contacts>();
-        Contacts kisi1 = new Contacts();
-        Contacts kisi2 = new Contacts();
+     
         public  static void CreatPhoneBook()
         {
             RehberKontroller rehber = new RehberKontroller();
 
-            rehber.kisi1.Ad = "Zeytin";
-            rehber.kisi1.Soyad = "Bakar";
-            rehber.kisi2.Ad = "Ahmet";
-            rehber.kisi2.Soyad = "Vural";
-            RehberKontroller.Kisiler.Add(rehber.kisi1);
-            RehberKontroller.Kisiler.Add(rehber.kisi2);
+        
 
             
 
-            rehber.numbers.Add("05542328945");
-            rehber.numbers.Add("05301589825");
-            rehber.numbers.Add("05428975123");
-            rehber.numbers.Add("05328543123");
-            rehber.numbers.Add("05528785173");
+            
             RehberKontroller.Kisiler.Add(new Contacts() { Ad = "Yavuz", Soyad = "Kiyak", TelefonNumarasi = "05542328945" });
             RehberKontroller.Kisiler.Add(new Contacts() { Ad = "Fatih", Soyad = "Erdem",TelefonNumarasi = "05301589825" });
             RehberKontroller.Kisiler.Add(new Contacts() { Ad = "Ali", Soyad = "Elbakar",TelefonNumarasi = "05528785173" });
+            RehberKontroller.Kisiler.Add(new Contacts() { Ad = "donerci", Soyad = "", TelefonNumarasi = "0557532173" });
+            RehberKontroller.Kisiler.Add(new Contacts() { Ad = "Su", Soyad = "", TelefonNumarasi = "05375785173" });
+            RehberKontroller.Kisiler.Add(new Contacts() { Ad = "Bakkal", Soyad = "", TelefonNumarasi = "0552878233" });
+            RehberKontroller.Kisiler.Add(new Contacts() { Ad = "Dota", Soyad = "bir", TelefonNumarasi = "05524325173" });
 
-             
 
 
 
 
 
-        }
-        public   void CreatPhoneBook2()
-        {
-           
-            Program program = new Program();
-            Program.numbers.Add(" 213");
-            Program.numbers.Add(" 2132");
-            Program.numbers.Add(" 2134");
 
         }
-        public void AddNumber()
+     
+        public static void AddNumber()
         {
 
 
@@ -256,7 +241,7 @@ namespace TelefonRehberi
 
 
         }
-        public  static  void ListPhoneBook()
+        public static void ListPhoneBook()
         {
             RehberKontroller rehber = new RehberKontroller();
             Console.WriteLine("Telefon Rehberi");
@@ -267,10 +252,13 @@ namespace TelefonRehberi
                 Console.WriteLine("Soyisim: " + "{" + RehberKontroller.Kisiler[i].Soyad + "}");
                 Console.WriteLine("Telefon Numarası: " + "{" + RehberKontroller.Kisiler[i].TelefonNumarasi + "}");
                 Console.WriteLine("*");
-                PhoneBookMainMenu();
-                return;
+                Console.WriteLine(RehberKontroller.Kisiler.Count);
+                
+               
             }
-             
+            PhoneBookMainMenu();
+            return;
+
 
         }
         public void SearchPhoneBook()
@@ -317,7 +305,7 @@ namespace TelefonRehberi
                             while (true)
                             {
                                 Console.WriteLine("Aradığınız krtiterlere uygun veri rehberde bulunamadı. Lütfen bir seçim yapınız.");
-                                Console.WriteLine("* Güncellemeyi sonlandırmak için    : (1)");
+                                Console.WriteLine("* Aramayi sonlandırmak için    : (1)");
                                 Console.WriteLine("* Yeniden denemek için              : (2)");
                                 input2 = Console.ReadLine();
                                 if (input2 == "2")
@@ -353,10 +341,10 @@ namespace TelefonRehberi
 
                         Console.Write("Telefon numarası giriniz: ");
                         input2 = Console.ReadLine();
-                        for (int i = 0; i < numbers.Count; i++)
+                        for (int i = 0; i < Kisiler.Count; i++)
                         {
 
-                            if (numbers[i] == input2)
+                            if (Kisiler[i].TelefonNumarasi == input2)
                             {
                                 arananindex = i;
                             }
@@ -387,8 +375,7 @@ namespace TelefonRehberi
                                 else
                                 {
                                     Console.WriteLine("Aradığınız krtiterlere uygun veri rehberde bulunamadı. Lütfen bir seçim yapınız.");
-                                    Console.WriteLine("* Aramayi sonlandirmak için     : (1)");
-                                    Console.WriteLine("* Yeniden denemek için              : (2)");
+                                     
 
                                 }
                             }
@@ -399,7 +386,7 @@ namespace TelefonRehberi
                             Console.WriteLine("********************************************** ");
                             Console.WriteLine("isim:" + " " + Kisiler[arananindex].Ad);
                             Console.WriteLine("Soyisim:" + " " + Kisiler[arananindex].Soyad);
-                            Console.WriteLine("Telefon Numarası:" + numbers[arananindex]);
+                            Console.WriteLine("Telefon Numarası:" + Kisiler[arananindex].TelefonNumarasi);
                             return;
 
                         }
@@ -408,6 +395,7 @@ namespace TelefonRehberi
                     else
                     {
                         Console.WriteLine("Yanlis karakter girdiniz");
+
                     }
 
                 }
@@ -417,18 +405,19 @@ namespace TelefonRehberi
         {
             RehberKontroller rehberKontroller = new RehberKontroller();
              
-            Console.WriteLine("Lütfen yapmak istediğiniz işlemi seçiniz");
-            Console.WriteLine("*******************************************");
-            Console.WriteLine("(1) Yeni Numara Kaydetmek");
-            Console.WriteLine("(2) Varolan Numarayı Silmek");
-            Console.WriteLine("(3) Varolan Numarayı Güncelleme");
-            Console.WriteLine("(4) Rehberi Listelemek");
-            Console.WriteLine("(5) Rehberde Arama Yapmak﻿");
-            Console.WriteLine("(6) Cikis﻿");
+           
             int input;
 
             while (true)
             {
+                Console.WriteLine("Lütfen yapmak istediğiniz işlemi seçiniz");
+                Console.WriteLine("*******************************************");
+                Console.WriteLine("(1) Yeni Numara Kaydetmek");
+                Console.WriteLine("(2) Varolan Numarayı Silmek");
+                Console.WriteLine("(3) Varolan Numarayı Güncelleme");
+                Console.WriteLine("(4) Rehberi Listelemek");
+                Console.WriteLine("(5) Rehberde Arama Yapmak﻿");
+                Console.WriteLine("(6) Cikis﻿");
 
                 if (int.TryParse(Console.ReadLine(), out input))
                 {
@@ -438,13 +427,7 @@ namespace TelefonRehberi
                 {
 
                     Console.WriteLine("Invalid character");
-                    Console.WriteLine("Lütfen yapmak istediğiniz işlemi seçiniz");
-                    Console.WriteLine("*******************************************");
-                    Console.WriteLine("(1) Yeni Numara Kaydetmek");
-                    Console.WriteLine("(2) Varolan Numarayı Silmek");
-                    Console.WriteLine("(3) Varolan Numarayı Güncelleme");
-                    Console.WriteLine("(4) Rehberi Listelemek");
-                    Console.WriteLine("(5) Rehberde Arama Yapmak﻿");
+                     
 
                 }
             }
@@ -452,7 +435,7 @@ namespace TelefonRehberi
             switch (input)
             {
                 case 1:
-                    rehberKontroller.AddNumber();
+                    AddNumber();
                     break;
                 case 2:
                     rehberKontroller.DeleteNumber();
@@ -461,7 +444,7 @@ namespace TelefonRehberi
                     rehberKontroller.UpdateNumber();
                     break;
                 case 4:
-                     ListPhoneBook();
+                    ListPhoneBook();
                     break;
                 case 5:
                     rehberKontroller.SearchPhoneBook();
